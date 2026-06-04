@@ -2,7 +2,7 @@
 FROM registry.access.redhat.com/ubi9/openjdk-17:1.24 AS build
 COPY --chown=185 . /code
 WORKDIR /code
-RUN ./mvnw package -DskipTests -B
+RUN microdnf install -y gzip unzip --nodocs && ./mvnw package -DskipTests -B
 
 ## Estágio 2 — IDÊNTICO ao Dockerfile.jvm oficial do Quarkus,
 ## apenas com os COPY vindo do estágio de build (--from=build)
