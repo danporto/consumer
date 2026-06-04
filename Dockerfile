@@ -1,8 +1,10 @@
 ## Estágio 1 — compilar (gera o target/quarkus-app/)
 FROM registry.access.redhat.com/ubi9/openjdk-17:1.24 AS build
+USER root
+RUN microdnf install -y gzip unzip --nodocs
 COPY --chown=185 . /code
 WORKDIR /code
-RUN microdnf install -y gzip unzip --nodocs && ./mvnw package -DskipTests -B
+RUN ./mvnw package -DskipTests -B
 
 ## Estágio 2 — IDÊNTICO ao Dockerfile.jvm oficial do Quarkus,
 ## apenas com os COPY vindo do estágio de build (--from=build)
