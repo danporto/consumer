@@ -9,6 +9,6 @@ public class EventConsumer {
 
     @Incoming("incoming-events")
     public void consume(String message) {
-        LOG.infof("[CONSUMER v3.1] Evento recebido: %s", message);
+        LOG.infof("[CONSUMER v3.2] Evento recebido: %s", message);
     }
 }
